@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  cerebro:
+    image: yannart/cerebro
+    ports:
+      - "7000:9000"
+    networks:
+      - elk
+
+networks:
+  elk:
+    external:
+      name: elk-setup_elk

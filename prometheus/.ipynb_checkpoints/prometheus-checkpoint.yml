@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s  # Cập nhật mỗi 15 giây
+
+scrape_configs:
+  - job_name: 'elasticsearch'
+    static_configs:
+      - targets: ['elasticsearch:9114']  # Địa chỉ của Elasticsearch Exporter
+
+  # - job_name: 'logstash'
+  #   static_configs:
+  #     - targets: ['logstash:9600']  # Logstash Prometheus plugin
+
+  - job_name: 'kibana'
+    metrics_path: '/api/stats'
+    static_configs:
+      - targets: ['kibana:5601']  # Kibana Metrics API

@@ -1,0 +1,16 @@
+services:
+  curator:
+    build:
+      context: curator/
+    init: true
+    volumes:
+      - ./curator/config/curator.yml:/.curator/curator.yml:ro,Z
+      - ./curator/config/delete_log_files_curator.yml:/.curator/delete_log_files_curator.yml:ro,Z
+      - /custom_temp:/custom_temp
+    environment:
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+      TMPDIR: /custom_temp
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
